@@ -5,22 +5,25 @@ spring:
        - id: employee-app
          uri: lb://EMPLOYEE
          predicates:
-           - Path=/employee/**
+           - Path=/employee/**,/auth/**
 #        filters:
 #           - AuthenticationFilter
+              
 
-
-       - id: restaurant-service
-         uri: lb://EMPLOYEE
-         predicates:
-           - Path=/auth/**
+#       - id: restaurant-service
+#         uri: lb://EMPLOYEE
+#         predicates:
+#           - Path=/auth/**
 #         filters:
 #           - AuthenticationFilter
+#         use when want to apply different filters for same microservice different controller
 
-       - id: identity-service
-         uri: lb://IDENTITY-SERVICE
+       - id: order-app
+         uri: lb://ORDERSERVICE
          predicates:
-           - Path=/auth/**
+           - Path=/order/**
+         filters:
+           - AuthenticationFilter
 eureka:
   client:
     service-url:
