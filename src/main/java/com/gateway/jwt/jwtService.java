@@ -71,6 +71,7 @@ public class jwtService {
 	}
 
 	public Claims extractAllClaims(String token) {
+		log.info("inside extract all claims method");
 		return Jwts.parserBuilder().setSigningKey(getSignKey()).build().parseClaimsJws(token).getBody();
 		// here .parseClaimsJws(token) will validate the signature,expiry etc then only return all the claims
 	}
