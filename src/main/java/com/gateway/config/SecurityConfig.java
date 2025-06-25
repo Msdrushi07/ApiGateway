@@ -13,7 +13,7 @@ public class SecurityConfig {
     @Bean
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         http
-            .csrf().disable()
+            .csrf(csrf -> csrf.disable())
             .authorizeExchange(exchange -> exchange
                 .anyExchange().permitAll() // ✅ Allow all requests to go through
             )
@@ -21,5 +21,6 @@ public class SecurityConfig {
             .formLogin().disable();
 
         return http.build();
+        // if want to implement Oauth2 security do same Security config as Order Service
     }
 }

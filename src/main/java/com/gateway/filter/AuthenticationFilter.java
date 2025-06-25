@@ -76,7 +76,8 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
 					UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(username, null,
 							authorities);
 					SecurityContextHolder.getContext().setAuthentication(auth);
-
+					// this SecurityContextHolder is applicable only for the gateway and will not routed to perticular microservice
+					// once request is routed we don't have anything in SecurityContextHolder (role,username etc)
 				} catch (Exception e) {
 					System.out.println("invalid access...!");
 					throw new RuntimeException("un authorized access to application");
